@@ -4,13 +4,10 @@ const Schema = mongoose.Schema;
 const PilotSchema = new Schema({
     name: {
         type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
         required: true
-    }
+    },
+    address: String,
+    age: Number
 });
 
 const PilotModel = mongoose.model('pilot', PilotSchema);

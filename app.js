@@ -8,11 +8,16 @@ const UserModel = require('./model/model');
 require('./auth/auth');
 
 //conexión a Mongo DB
-mongoose.connect('mongodb://127.0.0.1:27017/packagedelivery', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1:27017/packagedelivery', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+});
 mongoose.connection.on('error', error => console.log(error));
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 
 const routes = require('./routes/routes');
 const secureRoute = require('./routes/secure-routes');

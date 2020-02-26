@@ -1,6 +1,7 @@
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const UserModel = require('../model/model');
+const LogModel = require('../model/Log');
 //Creamos un middleware de passport para capturar los datos de registro del usuario
 passport.use('signup', new localStrategy({
     usernameField: 'email',
@@ -33,6 +34,24 @@ passport.use('login', new localStrategy({
             console.log("first");
             return done(null, false, { message: 'Wrong Password' });
         }
+
+        //Save the log
+
+        const log = new LogModel({
+            description: "LogIn",
+            comment: "User " + user.email + " logged Succesfully",
+            date: Date.now(),
+            user_id: user._id,
+        });
+
+        //Guardo el log de inicio de sesión
+        log.save()
+            .then(logData => {}).catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred in the log creation."
+                });
+            });
+
         return done(null, user, { message: 'Logged in Successfully' });
     } catch (error) {
         return done(error);
@@ -47,7 +66,7 @@ const ExtractJWT = require('passport-jwt').ExtractJwt;
 passport.use(new JWTstrategy({
     secretOrKey: 'top_secret',
     //El usuario envia el token a través de un parámetro llamado secret_token, de ahí lo obtenemos
-    jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token')
+    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken('Authorization')
 }, async(token, done) => {
     try {
         return done(null, token.user);
