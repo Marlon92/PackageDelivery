@@ -3,6 +3,7 @@ const router = express.Router();
 const pilots = require('../controllers/PilotController.js');
 const trucks = require('../controllers/TruckController.js');
 const logs = require('../controllers/LogController');
+const package = require('../controllers/PackageController.js');
 //Aquí vamos a declarar las rutas donde solo los usuarios autenticados pueden acceder
 
 //mostramos la data del cliente
@@ -20,5 +21,7 @@ router.get('/getAllPilots', pilots.findAll);
 router.get('/getAllTrucks', trucks.findAll);
 router.get('/getLogsByUser/:userId', logs.findByUser);
 router.put('/trucks/:truckId', trucks.update);
+router.post('/package', package.create);
+router.get('/package', package.findAll);
 
 module.exports = router;

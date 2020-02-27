@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PackageSchema = new Schema({
-    cliente: {
+    customer: {
         type: String,
         required: true
     },
@@ -12,7 +12,8 @@ const PackageSchema = new Schema({
     destination: String,
     active: Boolean,
     step: String,
-    receptionDate: { type: Date, default: Date.now },
+    truck_id: { type: mongoose.Schema.Types.ObjectId, ref: "truck" },
+    receptionDate: { type: Date, default: Date.now }
 });
 
 const PackageModel = mongoose.model('package', PackageSchema);

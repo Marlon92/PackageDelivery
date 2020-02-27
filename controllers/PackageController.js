@@ -1,32 +1,34 @@
-const TruckModel = require('../model/Truck');
+const PackageModel = require('../model/Package');
 const LogModel = require('../model/Log');
 //Creamos un middleware de passport para capturar los datos de registro del usuario
-require('../model/Pilot');
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.truckRegistration) {
+    if (!req.body.description) {
         return res.status(400).send({
-            message: "Truck content can not be empty"
+            message: "Package content can not be empty"
         });
     }
 
-    // Create a Note
-    const truck = new TruckModel({
-        truckRegistration: req.body.truckRegistration,
-        brand: req.body.brand,
-        model: req.body.model,
-        color: req.body.color,
-        chasis: req.body.chasis,
-        pilot_id: req.body.pilot_id,
+    // Create a Package
+    const package = new PackageModel({
+        customer: req.body.customer,
+        description: req.body.description,
+        amount: req.body.amount,
+        location: req.body.location,
+        destination: req.body.destination,
+        truck_id: req.body.truck_id,
+        active: true,
+        step: 'ON HAND',
+        receptionDate: Date.now()
     });
 
     // Save Note in the database
-    truck.save()
+    package.save()
         .then(data => {
             //Save the log
             const log = new LogModel({
-                description: "Truck Created",
-                comment: "Process for truck register",
+                description: "Package Received",
+                comment: "Package Received By "+ req.user.email,
                 date: Date.now(),
                 user_id: req.user._id
             });
@@ -36,20 +38,20 @@ exports.create = (req, res) => {
                     res.send(data);
                 }).catch(err => {
                     res.status(500).send({
-                        message: err.message || "Some error occurred while creating the Truck."
+                        message: err.message || "Some error occurred while receiving the Package."
                     });
                 });
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the Truck."
+                message: err.message || "Some error occurred while receiving the Package."
             });
         });
 };
 
 exports.findAll = (req, res) => {
-    TruckModel.find().populate("pilot_id")
-        .then(trucks => {
-            res.json(trucks);
+    PackageModel.find()
+        .then(package => {
+            res.json(package);
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Has ocurred an error"
@@ -57,6 +59,7 @@ exports.findAll = (req, res) => {
         });
 };
 
+/*
 exports.update = (req, res) => {
     if (!req.body.truckRegistration) {
         return res.status(400).send({
@@ -89,4 +92,4 @@ exports.update = (req, res) => {
                 message: "Error updating Truck with id " + req.params.truckId
             });
         });
-};
+};*/
