@@ -23,5 +23,6 @@ router.get('/getLogsByUser/:userId', logs.findByUser);
 router.put('/trucks/:truckId', trucks.update);
 router.post('/package', package.create);
 router.get('/package', package.findAll);
+router.get('/package/:truckId', package.findByTruck);
 
 module.exports = router;
