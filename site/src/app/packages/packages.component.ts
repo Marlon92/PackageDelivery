@@ -27,7 +27,7 @@ export class PackagesComponent {
 
   ngOnInit() {
 
-    this.controlService.getList('api/packageAll')
+    this.controlService.getList('api/package')
        .subscribe((res) => {
          this.films = res.records;
        });
