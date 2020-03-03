@@ -28,7 +28,7 @@ exports.create = (req, res) => {
             //Save the log
             const log = new LogModel({
                 description: "Package Received",
-                comment: "Package Received By "+ req.user.email,
+                comment: "Package Received By " + req.user.email,
                 date: Date.now(),
                 user_id: req.user._id
             });
@@ -54,7 +54,21 @@ exports.findAll = (req, res) => {
             res.json(package);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Has ocurred an error"
+                message: "Data not found" //message: err.message || "Has ocurred an error"
+            });
+        });
+};
+
+exports.findByTruck = (req, res) => {
+    const truck_id = req.params.truckId;
+    PackageModel.find({ truck_id }).populate('truck_id')
+        .then(packages => {
+            console.log("dasd");
+            res.send(packages);
+        }).catch(err => {
+            res.status(500).send({
+                //message: err.message || "Has ocurred an error"
+                message: "Data not found"
             });
         });
 };
