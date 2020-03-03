@@ -1,0 +1,24 @@
+<div class="container">
+	<mat-toolbar class="mat-toolbar" color="teal">
+	  <mat-toolbar-row class="mat-toolbar-row">
+	    <span class="routeMain" (click)="redirectMain()"><img class="logo-icon" src="/assets/tech.png"></span>
+	    <span class="example-fill-remaining-space"></span>
+	    <span class="align-center"></span>
+      <span class="example-spacer"></span>
+      <span *ngIf="showUsername">{{username}}</span>
+      <button mat-button routerLink="/login" *ngIf="showBtnLoginLogout">Login</button>
+      <button *ngIf="!showBtnLoginLogout" mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/films" *ngIf="!showBtnLoginLogout">Films</button>
+          <button mat-menu-item routerLink="/films/create" *ngIf="!showBtnLoginLogout">Add film</button>
+          <button mat-menu-item routerLink="/login" *ngIf="showBtnLoginLogout">Login</button>
+          <button mat-menu-item routerLink="/logout" *ngIf="!showBtnLoginLogout">Logout</button>
+        </mat-menu>
+	  </mat-toolbar-row>
+	</mat-toolbar>
+	<div class="content">
+	  <router-outlet></router-outlet>
+	</div>
+</div>

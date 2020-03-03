@@ -1,0 +1,59 @@
+#container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  filter: alpha(opacity=90);
+  opacity: 0.9;
+  /*flex-direction:column;*/
+  /*flex: 1 1 100%*/
+}
+#mdCard {
+  margin: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding: 60px;
+  flex: 0 0 auto;
+  vertical-align: central;
+  /*flex-direction: row;*/
+  /*width: 40%;*/
+}
+#mdCard > mat-form-field {
+  width:270px;
+}
+  #mdCard > h1 {
+    font-size: 1.2em;
+  }
+md-progress-spinner {
+  width: 36px;
+  position: absolute;
+  bottom: 0px;
+  right: 182px;
+}
+.buttonColor{
+	background: #b53f5b;
+    color: #fff;
+    opacity: 1;
+}
+.mat-card-content {
+  width: 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+a {
+	color: gold;
+}
+

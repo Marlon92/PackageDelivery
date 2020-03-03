@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const app = express();
+
 const UserModel = require('./model/model');
 
 require('./auth/auth');
@@ -15,6 +16,15 @@ mongoose.connect('mongodb://127.0.0.1:27017/packagedelivery', {
 });
 mongoose.connection.on('error', error => console.log(error));
 mongoose.Promise = global.Promise;
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.setHeader('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())

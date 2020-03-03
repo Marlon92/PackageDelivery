@@ -7,7 +7,8 @@ const package = require('../controllers/PackageController.js');
 //Aquí vamos a declarar las rutas donde solo los usuarios autenticados pueden acceder
 
 //mostramos la data del cliente
-router.get('/profile', (req, res, next) => {
+router.get('/packageAll', (req, res, next) => {
+    console.log("Jjjjj");
     res.json({
         message: 'Succesfully',
         user: req.user,
@@ -22,6 +23,6 @@ router.get('/getAllTrucks', trucks.findAll);
 router.get('/getLogsByUser/:userId', logs.findByUser);
 router.put('/trucks/:truckId', trucks.update);
 router.post('/package', package.create);
-router.get('/package', package.findAll);
+//router.get('/packageAll', package.findAll);
 
 module.exports = router;

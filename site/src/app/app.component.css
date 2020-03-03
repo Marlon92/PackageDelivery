@@ -1,0 +1,40 @@
+.container{
+	height: 100%;
+	/*background-image: url("../assets/font2.jpg");
+	position:absolute; top:0; bottom:0; right:0; left:0;*/
+  opacity: 1;
+}
+
+.mat-toolbar {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 16px;
+    flex-direction: column;
+    background: #212121;
+    color: #fff;
+    border-bottom: 1px solid #48484a;
+
+}
+
+.mat-toolbar .mat-toolbar-row {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    height: 85px;
+}
+
+.logo-icon {
+  padding: 0;
+  max-height: 100%;
+  max-width: 100%;
+  height: auto;
+  width: 50px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

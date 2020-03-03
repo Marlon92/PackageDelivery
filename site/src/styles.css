@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '~css-star-rating/css/star-rating';
+body{
+	margin:0;
+	background-color: #212121;
+  color: #e0e0e0;
+  font-family: 'Source Sans Pro',sans-serif;
+}
+html { height:auto; }

@@ -1,0 +1,77 @@
+<div id="container">
+  <mat-card id="mdCard">
+    <mat-card-header>
+      <mat-card-title>Add a film</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="example-form">
+      <div class="example-container">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Name" [(ngModel)]="model.name" autocomplete="off" name="name" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Description" [(ngModel)]="model.description"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [disabled]="isDisabled" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="model.release_date" [formControl]="myForm.controls['release_date']">
+          <mat-datepicker-toggle [disabled]="isDisabled" matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <label>Rating</label>
+        <star-rating [starType]="'svg'" [rating]="model.rating" (starClickChange)="onClick($event)"></star-rating>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Ticket Price" [(ngModel)]="model.ticket_price" autocomplete="off" name="ticket_price" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Slug" [(ngModel)]="model.slug" autocomplete="off" name="slug" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Country" [(ngModel)]="country" name="country">
+              <mat-option *ngFor="let country of countries" [value]="country">
+                {{country.name}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList>
+            <mat-chip
+              *ngFor="let genre of genres"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(genre)">
+              {{genre.description}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Genres"
+              #fruitInput
+              [formControl]="fruitCtrl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let genre of filteredFruits | async" [value]="genre">
+              {{genre.description}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <div class="center">
+            <file-drop (onFileDrop)="dropped($event)"
+            (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+            <span>{{fileName}}</span>
+            </file-drop>
+            <div class="upload-table">
+            </div>
+        </div>
+      </div>
+    </form>
+    </mat-card-content>
+      <button class="buttonColor" mat-button (click)="save()">Save</button>
+      <mat-spinner diameter="40" *ngIf="activate"></mat-spinner>
+  </mat-card>
+</div>

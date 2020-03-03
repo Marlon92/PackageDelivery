@@ -1,0 +1,7 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="center">
+  <mat-card class="card-picture" *ngFor="let film of films" (click)="openMovie(film)">
+    <img mat-card-image src="../{{film.photo}}">
+    <span>{{film.name}}</span>
+  </mat-card>
+</div>
+

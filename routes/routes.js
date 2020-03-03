@@ -26,9 +26,10 @@ router.post('/login', async(req, res, next) => {
             req.login(user, { session: false }, async(error) => {
                 if (error) return next(error)
                 const body = { _id: user._id, email: user.email };
+                const userEmail = user.email;
                 const token = jwt.sign({ user: body }, 'top_secret');
                 //retornamos el token de inicio de sesión al usuario
-                return res.json({ token });
+                return res.json({ token, userEmail });
             });
         } catch (error) {
             return next(error);

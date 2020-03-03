@@ -1,0 +1,40 @@
+<div id="container">
+	<mat-card id="mdCard">
+	   <mat-card-header>
+	     <mat-card-title>Subscribe and enjoy of the best movies!</mat-card-title>
+	   </mat-card-header>
+	   <mat-card-content>
+	     <form class="example-form">
+	       <table class="example-full-width" cellspacing="0">
+	         <tr>
+	           <td>
+	             <mat-form-field class="example-full-width">
+	             	<input matInput placeholder="Full name" [(ngModel)]="model.name" autocomplete="off" name="name" required>
+	             </mat-form-field>
+	           </td>
+	         </tr>
+	         <tr>
+	           <td>
+	             <mat-form-field class="example-full-width">
+		           <input matInput placeholder="email" [(ngModel)]="model.email" name="email" required>
+		         </mat-form-field>
+		       </td>
+	       </tr>
+	       <tr>
+	           <td>
+	             <mat-form-field class="example-full-width">
+		           <input matInput placeholder="password" (keyup.enter)="signup()" [(ngModel)]="model.password"type="password" name="password" required>
+		         </mat-form-field>
+		       </td>
+	       </tr>
+          </table>
+	     </form>
+	     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+	   </mat-card-content>
+	   <mat-card-actions>
+	     <button class="buttonColor" mat-raised-button (click)="signup()">Sign up</button>
+	   </mat-card-actions>
+	   <mat-card-actions><span>Are you have an account? <a href="/login">Log In</a></span>
+	   </mat-card-actions>
+	 </mat-card>
+</div>
