@@ -6,7 +6,6 @@ import { LogoutComponent } from './login/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { shareReplay } from 'rxjs/operators';
 import { PackagesComponent } from './packages/packages.component';
-import { FilmDetailsComponent } from './filmDetails/filmDetails.component';
 import { ReceptionPackageComponent } from './receptionPackages/receptionPackages.component';
 
 const routes: Routes = [

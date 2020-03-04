@@ -38,16 +38,12 @@ export class AppComponent {
       }, 200);
     });
     this.globals.refreshOptionSession();
-
-    /*if (this.globals.isLoggin()) {
-       this.router.navigate(['/films']);
-    }*/
   }
 
   public onNavigate($event) {
     this.selected = 'user';
     if ($event === 'add') {
-      this.router.navigate(['/films/create']);
+      this.router.navigate(['/api/package']);
     }
   }
 

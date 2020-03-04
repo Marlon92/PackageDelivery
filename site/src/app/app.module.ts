@@ -16,7 +16,6 @@ import { LogoutComponent } from './login/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { Globals } from './shared/Globals';
 import { PackagesComponent } from './packages/packages.component';
-import { FilmDetailsComponent } from './filmDetails/filmDetails.component';
 import { ReceptionPackageComponent } from './receptionPackages/receptionPackages.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FileDropModule } from 'ngx-file-drop';
@@ -32,7 +31,6 @@ import { TableEditComponent } from './controls/tableEdit/tableEdit.component';
     LogoutComponent,
     RegisterComponent,
     PackagesComponent,
-    FilmDetailsComponent,
     ReceptionPackageComponent,
     TableComponent,
     TableEditComponent,
