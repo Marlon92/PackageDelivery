@@ -17,11 +17,13 @@ import { RegisterComponent } from './register/register.component';
 import { Globals } from './shared/Globals';
 import { PackagesComponent } from './packages/packages.component';
 import { FilmDetailsComponent } from './filmDetails/filmDetails.component';
-import { CreateFilmComponent } from './createFilm/createFilm.component';
+import { ReceptionPackageComponent } from './receptionPackages/receptionPackages.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FileDropModule } from 'ngx-file-drop';
 import { StarRatingModule } from 'angular-star-rating';
 import { Routes, RouterModule } from '@angular/router';
+import { TableComponent } from './controls/table/table.component';
+import { TableEditComponent } from './controls/tableEdit/tableEdit.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { Routes, RouterModule } from '@angular/router';
     RegisterComponent,
     PackagesComponent,
     FilmDetailsComponent,
-    CreateFilmComponent,
+    ReceptionPackageComponent,
+    TableComponent,
+    TableEditComponent,
   ],
   imports: [
     BrowserModule,

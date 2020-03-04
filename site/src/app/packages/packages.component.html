@@ -1,7 +1,18 @@
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2.5%" fxLayoutAlign="center">
-  <mat-card class="card-picture" *ngFor="let film of films" (click)="openMovie(film)">
-    <img mat-card-image src="../{{film.photo}}">
-    <span>{{film.name}}</span>
-  </mat-card>
+<div class="matAccordion">
+    <mat-expansion-panel #panel1 [expanded]="true" [disabled]="false" hideToggle="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Packages
+            </mat-panel-title>
+            <mat-panel-description>
+                Packages
+                <mat-icon>event_note</mat-icon>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!--<div class="optRow">
+          <button mat-raised-button color="primary" [disabled]="!hasRows" (click)="openPayDialog()"><mat-icon>credit_card</mat-icon> Pagar</button>
+        </div>-->
+    </mat-expansion-panel>
+    <table-edit-component #table id="table" (rowEmit)="onRowEmit($event)">
+    </table-edit-component>
 </div>
-

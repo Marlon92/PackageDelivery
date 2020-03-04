@@ -1,0 +1,53 @@
+<div #main class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+    <!-- ID Column -->
+    <ng-container *ngFor="let column of columnsContainer" [matColumnDef]="column.columnDef">
+      <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
+      <mat-cell *matCellDef="let row;let i=index">
+          <div class="cell-wrapper" *ngIf="cmpText(column.type)">
+              <mat-form-field>
+                  <input matInput #txtTracking [value]="column.cell(row)" placeholder="" autofocus matTooltip="{{column.header}}" (keyup.enter)="checkEnterKey($event, row,column,i)" type="number" (change)="changeRow($event, row,column)">
+              </mat-form-field>
+          </div>
+          <div class="cell-wrapper" *ngIf="cmpTextNormal(column.type)">
+              <mat-form-field>
+                  <input matInput #txtTracking [value]="column.cell(row)" placeholder="" autofocus matTooltip="{{column.header}}" (keyup.enter)="checkEnterKey($event, row,column,i)" (change)="changeRow($event, row,column)">
+              </mat-form-field>
+          </div>
+          <div class="cell-wrapper" *ngIf="cmpButton(column.type)">
+              <button class="btnDelete" mat-raised-button color="primary" (click)="editRow(row,column,i)"><mat-icon class="mat-24">edit</mat-icon></button>
+              <button class="btnDelete" mat-raised-button color="primary" (click)="deleteRow(row,column,i)"><mat-icon class="mat-24">delete</mat-icon></button>
+          </div>
+          <div class="cell-wrapper" *ngIf="cmpLabel(column.type)">
+              {{ column.cell(row) }}
+          </div>
+          <div class="cell-wrapper" *ngIf="cmpDate(column.type)">
+              {{ column.cell(row) |  date:'dd/MM/yyyy' }}
+          </div>
+          <div class="cell-wrapper" *ngIf="cmpImg(column.type)">
+              <img width="150" height="100" src="{{ column.cell(row) }}" />
+          </div>
+          <div class="cell-wrapper cell-pointer" *ngIf="cmpEmitResult(column.type)" (click)="emitRow(row,column,i)">
+              {{ column.cell(row) }}
+          </div>
+          <div class="cell-wrapper cell-pointer" *ngIf="cmpEmitButtonResult(column.type)">
+              <button class="btnEmit" mat-raised-button color="primary" (click)="emitRow(row,column,i)"><mat-icon class="mat-24">{{column.icon}}</mat-icon> {{ column.cell(row) }}</button>
+          </div>
+          <div class="cell-wrapper cell-pointer" *ngIf="cmpButtonReport(column.type)">
+              <button class="btnEmit" mat-raised-button color="primary" (click)="buttonEmitRow(row,column,i)"><mat-icon class="mat-24">{{column.icon}}</mat-icon></button>
+          </div>
+          <div class="cell-wrapper cell-pointer" *ngIf="cmpButtonCalculateWeight(column.type)">
+              <button class="btnCalculateWeight" mat-raised-button color="primary" (click)="buttonEmitRow(row,column,i)">Calculate weight</button>
+          </div>
+      </mat-cell>
+    </ng-container>    
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': (selectedRowIndex == row.id && isSelected == true)}" (click)="highlight(row)"></mat-row>
+  </mat-table>
+</div>
+
+<!-- Copyright 2017 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

@@ -1,0 +1,78 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2%;
+  /*max-height: 500px;
+  min-width: 300px;
+  max-width:800px;*/
+}
+
+.mat-table {
+  overflow: auto;
+}
+
+.row-pointer {
+  cursor: pointer;
+}
+
+mat-progress-bar {
+}
+
+.example-header {
+  min-height: 64px;
+  display: flex;
+  align-items: baseline;
+  padding: 8px 24px 0;
+  font-size: 20px;
+  justify-content: space-between;
+  background-color: #fafafa;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  flex-grow: 1;
+  margin-left: 32px;
+}
+
+.mat-table ::ng-deep mat-header-cell {
+  min-height: 40px;
+  line-height: 20px;
+  /*border-right-color: rgba(0,0,0,.12);
+  border-right-width: 1px;
+  border-right-style: solid;*/
+  width: 100px;
+  overflow: hidden;
+  position: relative;
+  margin-left: 4px;
+}
+
+.mat-table ::ng-deep mat-cell {
+  min-height: 40px;
+  line-height: 20px;
+  /*border-right-color: rgba(0,0,0,.12);
+  border-right-width: 1px;
+  border-right-style: solid;*/
+  width: 100px;
+  overflow: hidden;
+  position: relative;
+  margin-left: 4px;
+}
+
+.column-resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  width: 8px;
+  height: 100%;
+  cursor: col-resize;
+}
+/*.mat-table ::ng-deep .cell-wrapper {
+  min-height: 40px;
+  width: 100%;
+}*/
+
+.highlight {
+  background: #4DB6AC; /* green */
+}

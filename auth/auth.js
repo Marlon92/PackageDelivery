@@ -5,7 +5,7 @@ const LogModel = require('../model/Log');
 //Creamos un middleware de passport para capturar los datos de registro del usuario
 passport.use('signup', new localStrategy({
     usernameField: 'email',
-    passwordField: 'password'
+    passwordField: 'password',
 }, async(email, password, done) => {
     try {
         //Guardamos la información del usuario a la base de datos

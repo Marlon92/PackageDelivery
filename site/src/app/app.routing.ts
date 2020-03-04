@@ -7,10 +7,10 @@ import { RegisterComponent } from './register/register.component';
 import { shareReplay } from 'rxjs/operators';
 import { PackagesComponent } from './packages/packages.component';
 import { FilmDetailsComponent } from './filmDetails/filmDetails.component';
-import { CreateFilmComponent } from './createFilm/createFilm.component';
+import { ReceptionPackageComponent } from './receptionPackages/receptionPackages.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'films', pathMatch: 'full' },
+  { path: '', redirectTo: 'api/packages', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent },

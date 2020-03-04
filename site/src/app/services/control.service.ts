@@ -68,8 +68,13 @@ export class ControlService {
 
     public createRegister(register: any, url: string) {
         const header = new Headers();
+        var token = this.globals.getToken();
         header.append('Content-Type', 'application/json');
-        header.append('X-Requested-With', 'application/xml');
+        
+        if (token !== "") {
+            var authorization = token;
+            header.append("Authorization", authorization);
+        }
         return this.http.post(Config.API_ENDPOINT + url, register, { headers: header })
           .map((res) => res.json());
     }

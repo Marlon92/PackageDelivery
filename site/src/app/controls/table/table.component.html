@@ -1,0 +1,60 @@
+<div *ngIf="editMode" class="example-container mat-elevation-z8">
+  <mat-progress-bar mode="indeterminate" color="primary" *ngIf="showBar"></mat-progress-bar>
+  <div *ngIf="showFilter" class="example-header">
+    <mat-form-field floatPlaceholder="never">
+      <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Filter {{textFilter}}" matTooltip="Write your text for the {{textFilter}} search">
+    </mat-form-field>
+  </div>
+  <mat-paginator *ngIf="showPaginator" #paginator
+                [length]=length
+                [pageIndex]="0"
+                [pageSize]="PageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="_pageEvent($event)">
+  </mat-paginator>
+  <mat-table #table [dataSource]="dataSource" matSort>
+    <ng-container *ngFor="let column of columnsContainer;let indexColumn=index" [matColumnDef]="column.columnDef">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ column.header }}
+        <span class="column-resize-handle" (mousedown)="resizeColumn($event,column,indexColumn)"></span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row;let i=index">
+        <div class="cell-wrapper" *ngIf="cmpNormal(column)">
+          {{ column.cell(row) }}
+        </div>
+        <div class="cell-wrapper cell-pointer" *ngIf="cmpEmit(column)" (click)="emitRow(row,column,i)">
+          {{ column.cell(row) }}
+        </div>
+        <div class="cell-wrapper" *ngIf="cmpButton(column.type)">
+          <button class="btnDelete" mat-raised-button color="primary" (click)="deleteRow(row,column,i)"><mat-icon class="mat-24">delete</mat-icon></button>
+        </div>
+      </mat-cell>      
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row class="row-pointer" *matRowDef="let row; columns:displayedColumns;" [ngClass]="{'highlight': row.isSelected == true}"></mat-row>
+  </mat-table>  
+</div>
+
+<div *ngIf="!editMode" class="example-container mat-elevation-z8">
+  <mat-progress-bar mode="indeterminate" color="primary" *ngIf="showBar"></mat-progress-bar>
+  <div *ngIf="showFilter" class="example-header">
+    <mat-form-field floatPlaceholder="never">
+      <input matInput #filter placeholder="Filter users" matTooltip="Write your text for the users search">
+    </mat-form-field>
+  </div>
+  <mat-paginator *ngIf="showPaginator" #paginator
+                [length]="100"
+                [pageIndex]="0"
+                [pageSize]="25"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container *ngFor="let column of columnsContainer" [matColumnDef]="column.columnDef">
+      <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ column.cell(row) }}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns:displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.warehouseDetailId}"></mat-row>
+  </mat-table>  
+</div>
+

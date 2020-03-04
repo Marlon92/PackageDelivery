@@ -15,6 +15,11 @@ import {
   MatSelectModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatExpansionModule,
+  MatTableModule,
+  MatProgressBarModule,
+  MatTooltipModule,
+  MatPaginatorModule,
 } from '@angular/material';
 
 @NgModule({
@@ -33,6 +38,11 @@ imports: [
   MatDatepickerModule,
   MatNativeDateModule,
   MatAutocompleteModule,
+  MatExpansionModule,
+  MatTableModule,
+  MatProgressBarModule,
+  MatTooltipModule,
+  MatPaginatorModule,
 	],
 exports: [
 	CommonModule,
@@ -49,6 +59,11 @@ exports: [
   MatDatepickerModule,
   MatNativeDateModule,
   MatAutocompleteModule,
+  MatExpansionModule,
+  MatTableModule,
+  MatProgressBarModule,
+  MatTooltipModule,
+  MatPaginatorModule,
 ],
 })
 export class CustomMaterialModule { }

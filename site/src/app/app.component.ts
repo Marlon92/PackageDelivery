@@ -25,7 +25,7 @@ export class AppComponent {
       if (e) {
         const session = localStorage.getItem("session");
         const val = JSON.parse(session);
-        this.username = val.user.name;
+        this.username = val.userEmail;
       }
       setTimeout(function() {
         me.showUsername = e;

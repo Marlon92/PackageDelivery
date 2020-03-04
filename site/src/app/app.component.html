@@ -11,8 +11,8 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="/films" *ngIf="!showBtnLoginLogout">Films</button>
-          <button mat-menu-item routerLink="/films/create" *ngIf="!showBtnLoginLogout">Add film</button>
+          <button mat-menu-item routerLink="api/packages" *ngIf="!showBtnLoginLogout">Packages</button>
+          <button mat-menu-item routerLink="api/packages/create" *ngIf="!showBtnLoginLogout">Reception Package</button>
           <button mat-menu-item routerLink="/login" *ngIf="showBtnLoginLogout">Login</button>
           <button mat-menu-item routerLink="/logout" *ngIf="!showBtnLoginLogout">Logout</button>
         </mat-menu>

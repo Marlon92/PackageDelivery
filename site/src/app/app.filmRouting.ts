@@ -7,12 +7,12 @@ import { RegisterComponent } from './register/register.component';
 import { shareReplay } from 'rxjs/operators';
 import { PackagesComponent } from './packages/packages.component';
 import { FilmDetailsComponent } from './filmDetails/filmDetails.component';
-import { CreateFilmComponent } from './createFilm/createFilm.component';
+import { ReceptionPackageComponent } from './receptionPackages/receptionPackages.component';
 
 const routes: Routes = [
   { path: 'api/packages', component: PackagesComponent },
-  { path: 'films/create', component: CreateFilmComponent },
-  { path: 'films/:slug', component: FilmDetailsComponent }
+  { path: 'api/packages/create', component: ReceptionPackageComponent },
+  { path: 'api/packages/:slug', component: FilmDetailsComponent }
 ];
 
 @NgModule({
