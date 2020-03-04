@@ -38,15 +38,24 @@ export class LoginComponent{
     this.activate = true;
     this.controlService.login(this.model,"login")
         .subscribe((res) => {
-          this.activate = false;
-          var session = { "user": res.userEmail, "session": true };
-          var token = "Bearer " + res.token;
-          localStorage.setItem("session", JSON.stringify(session));
-          localStorage.setItem("token", JSON.stringify(token));
-          this.router.navigate(['api/packages']);
-          this.globals.refreshOptionSession();
+          if (res.Status == 1) {
+            this.activate = false;
+            var session = { "user": res.userEmail, "session": true };
+            var token = "Bearer " + res.token;
+            localStorage.setItem("session", JSON.stringify(session));
+            localStorage.setItem("token", JSON.stringify(token));
+            this.router.navigate(['api/packages']);
+            this.globals.refreshOptionSession();
+          } else {
+            this.snackBar.open(res.Error, 'Close', {
+              duration: 5000,
+            });
+            this.activate = false;
+          }
+          
         }, (error: any) => {
           const status = error.status;
+          this.activate = false;
           if (status === 401) {
             this.snackBar.open('Incorrect User or Password', 'Close', {
               duration: 5000,

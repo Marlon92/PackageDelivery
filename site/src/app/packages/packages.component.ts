@@ -25,7 +25,7 @@ export class PackagesComponent {
   public model: any;
   public packages: any[];
 
-  public displayedColumns = ['customer', 'description', 'amount', 'location', 'destination', 'receptionDate'];
+  public displayedColumns = ['customer', 'description', 'amount', 'truck','pilot','location', 'destination', 'receptionDate'];
   public columnsContainer = [
 
     { columnDef: '_id', header: 'id', cell: (row: Element) => `${row._id}`, type: 'label'},
@@ -34,6 +34,8 @@ export class PackagesComponent {
     { columnDef: 'amount', header: 'Monto', cell: (row: Element) => `${row.amount}`, type: 'label'},
     { columnDef: 'location', header: 'Location', cell: (row: Element) => `${row.location}`, type: 'label' },
     { columnDef: 'destination', header: 'Destination', cell: (row: Element) => `${row.destination}`, type: 'label' },
+    { columnDef: 'truck', header: 'Truck', cell: (row: Element) => `${row.truck}`, type: 'label' },
+    { columnDef: 'pilot', header: 'Pilot', cell: (row: Element) => `${row.pilot}`, type: 'label' },
     { columnDef: 'receptionDate', header: 'Reception Date', cell: (row: Element) => `${row.receptionDate}`, type: 'date' },
   ];
 
@@ -52,8 +54,17 @@ export class PackagesComponent {
     this.controlService.getList('api/package')
        .subscribe((res) => {
          this.packages = res;
+         var array = [];
+         for (var x = 0; x < res.length; x++){
+          var truckName = res[x].truck_id.brand + " " + res[x].truck_id.truckRegistration;
+          var pilotName = res[x].truck_id.pilot_id.name;
+          var json = {_id: res[x]._id, customer: res[x].customer, description: res[x].description, amount: res[x].amount,
+          location: res[x].location, destination: res[x].destination, truck: truckName, pilot: pilotName, receptionDate: res[x].receptionDate
+          }
+          array.push(json);
+         }
          this.table.initDatasource();
-         this.table.dataSource.setData(this.packages);
+         this.table.dataSource.setData(array);
        });
       }
 
@@ -69,5 +80,7 @@ export interface Element {
   amount: string;
   location: string;
   destination: string;
+  truck: string;
   receptionDate: Date;
+  pilot: string;
 }

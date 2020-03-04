@@ -1,4 +1,5 @@
 const PackageModel = require('../model/Package');
+const PilotModel = require('../model/Pilot');
 const LogModel = require('../model/Log');
 //Creamos un middleware de passport para capturar los datos de registro del usuario
 exports.create = (req, res) => {
@@ -49,7 +50,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    PackageModel.find()
+    PackageModel.find().populate([{ path: 'truck_id', populate: { path: 'pilot_id' }}])
         .then(package => {
             res.json(package);
         }).catch(err => {
@@ -63,7 +64,6 @@ exports.findByTruck = (req, res) => {
     const truck_id = req.params.truckId;
     PackageModel.find({ truck_id }).populate('truck_id')
         .then(packages => {
-            console.log("dasd");
             res.send(packages);
         }).catch(err => {
             res.status(500).send({
